@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Actions Workflow para Deploy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        .success-message {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub Actions Workflow para Deploy</h1>
+        
+        <p>Copie o código abaixo e cole em um novo arquivo workflow no seu repositório GitHub:</p>
+        
+        <div>
+            <button class="copy-btn" onclick="copyCode()">Copiar Código</button>
+            <span id="successMsg" class="success-message">Copiado!</span>
+        </div>
+        
+        <pre><code id="codeBlock">name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2</code></pre>
+        
+        <div class="instructions">
+            <h2>Instruções:</h2>
+            <ol>
+                <li>Acesse seu repositório no GitHub: <a href="https://github.com/ichtupan/cronosapp" target="_blank">https://github.com/ichtupan/cronosapp</a></li>
+                <li>Clique na aba "Actions"</li>
+                <li>Clique em "New workflow"</li>
+                <li>Clique em "set up a workflow yourself"</li>
+                <li>Apague todo o conteúdo padrão</li>
+                <li>Cole o código acima</li>
+                <li>Clique em "Commit new file"</li>
+                <li>Faça upload da pasta dist para a branch gh-pages (ou principal, conforme instruções detalhadas)</li>
+                <li>Execute o workflow criado na aba Actions</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function copyCode() {
+            var codeBlock = document.getElementById('codeBlock');
+            var textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            var successMsg = document.getElementById('successMsg');
+            successMsg.style.display = 'inline';
+            setTimeout(function() {
+                successMsg.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html> 
