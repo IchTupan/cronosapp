@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --timer-text-color: #222;
+    
+    /* Theme variables for light mode with improved contrast */
+    --glass-color: rgba(255, 255, 255, 0.7);
+    --glass-highlight: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(180, 200, 210, 0.5);
+    --glass-shadow: rgba(0, 0, 0, 0.15);
+    --text-primary: rgba(30, 40, 50, 1);
+    --text-secondary: rgba(50, 60, 80, 1);
+    --accent-color: #096158;
+    --accent-color-hover: #074742;
+  }
+
+  .dark {
+    --background: 225 10% 7%;        /* Mais escuro */
+    --foreground: 0 0% 96%;          /* Branco puro */
+    --card: 225 10% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 225 10% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 264 80% 68%;          /* Roxo mais vibrante */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 234 14% 18%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 233 15% 24%;
+    --muted-foreground: 240 6% 72%;
+    --accent: 256 97% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 355 70% 54%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 226 17% 18%;
+    --input: 226 22% 22%;
+    --ring: 256 60% 60%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 232 10% 13%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 256 80% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 234 15% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 224 16% 25%;
+    --sidebar-ring: 256 97% 50%;
+    
+    --timer-text-color: #fff;
+    
+    /* Theme variables for dark mode */
+    --glass-color: rgba(30, 40, 40, 0.3);
+    --glass-highlight: rgba(50, 70, 70, 0.4);
+    --glass-border: rgba(70, 90, 90, 0.3);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --accent-color: #4fd1c5;
+    --accent-color-hover: #38b2ac;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors;
+  }
+}
+
+/* Glass card enhancement */
+.glass-card {
+  @apply bg-white/70 dark:bg-white/10 backdrop-blur-lg rounded-2xl border border-card shadow-xl;
+}
+
+/* Add shadow-glow effect for the timer */
+.shadow-glow {
+  box-shadow: 0 0 15px 5px var(--accent-color);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 15px 2px var(--accent-color);
+  }
+  50% {
+    box-shadow: 0 0 25px 5px var(--accent-color);
+  }
+  100% {
+    box-shadow: 0 0 15px 2px var(--accent-color);
+  }
+}
+
+/* Glass morphism styles */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: var(--glass-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px var(--glass-shadow);
+}
+
+.glass-input {
+  background: var(--glass-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Custom color classes */
+.text-theme-primary {
+  color: var(--text-primary);
+}
+
+.text-theme-secondary {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+/* Add specific theme classes for better contrast */
+:root:not(.dark) .text-theme-primary {
+  color: rgba(30, 40, 50, 1);
+}
+
+:root:not(.dark) .text-theme-secondary {
+  color: rgba(60, 70, 80, 0.9);
+}
+
+/* Custom glass classes */
+.glass {
+  background: var(--glass-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px var(--glass-shadow);
+}
