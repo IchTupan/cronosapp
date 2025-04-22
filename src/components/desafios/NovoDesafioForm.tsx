@@ -87,7 +87,7 @@ const NovoDesafioForm = ({ desafio, onClose, onSave }: NovoDesafioFormProps) => 
     }
   }, [editMode, desafio]);
 
-  const handleChange = (field: string, value: any) => {
+  const handleChange = (field: string, value: string | number | boolean) => {
     setFormState(prev => ({
       ...prev,
       [field]: value
@@ -95,7 +95,7 @@ const NovoDesafioForm = ({ desafio, onClose, onSave }: NovoDesafioFormProps) => 
     
     // Real-time validation
     if (field === "titulo") {
-      if (!value.trim()) {
+      if (!value.toString().trim()) {
         setErrors(prev => ({ ...prev, titulo: "O título é obrigatório" }));
       } else {
         setErrors(prev => {
@@ -163,8 +163,8 @@ const NovoDesafioForm = ({ desafio, onClose, onSave }: NovoDesafioFormProps) => 
       } as Desafio;
       
       // Remove auxiliary fields
-      delete (desafioSalvar as any).horas;
-      delete (desafioSalvar as any).minutos;
+      delete (desafioSalvar as Desafio & { horas?: number; minutos?: number }).horas;
+      delete (desafioSalvar as Desafio & { horas?: number; minutos?: number }).minutos;
       
       onSave(desafioSalvar);
     } catch (error) {

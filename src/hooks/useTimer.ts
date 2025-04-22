@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import useStats from "@/hooks/useStats";
@@ -128,7 +127,7 @@ export default function useTimer(
         beepRef.current.currentTime = 0;
       }
     };
-  }, [running, onBreak, maxFocus]);
+  }, [running, onBreak, maxFocus, beepRef]);
 
   function handleStreakUpdate() {
     const today = new Date().toISOString().split('T')[0];

@@ -1,4 +1,3 @@
-
 import {
   Sidebar,
   SidebarContent,
@@ -68,7 +67,7 @@ export function AppSidebar({streak, cycles, todayCycles, todayMinutes, onResetCy
                 <SidebarMenuButton asChild>
                   <span>
                     <Settings className="inline w-5 h-5 mr-2" />
-                    Modo escuro 
+                    Modo escuro
                     <input
                       type="checkbox"
                       checked={darkMode}

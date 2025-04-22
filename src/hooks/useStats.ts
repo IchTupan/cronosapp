@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 interface StatsData {
@@ -50,7 +49,7 @@ function useStats() {
     setTodayMinutes(data.minutes);
     
     // Atualiza dados gerais
-    let totalData = JSON.parse(localStorage.getItem("stats_total") || "{}") || { cycles: 0, minutes: 0 };
+    const totalData = JSON.parse(localStorage.getItem("stats_total") || "{}") || { cycles: 0, minutes: 0 };
     totalData.cycles += 1;
     totalData.minutes += minutes;
     localStorage.setItem("stats_total", JSON.stringify(totalData));
