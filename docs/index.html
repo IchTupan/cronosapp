@@ -17,6 +17,25 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <script type="module" crossorigin src="/cronosapp/assets/index-BgOYCuXd.js"></script>
     <link rel="stylesheet" crossorigin href="/cronosapp/assets/index-Dviv74n2.css">
+    <script>
+      // Handle SPA route redirects
+      (function(){
+        let redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          const basePath = '/cronosapp';
+          // Handle SPA routes properly
+          if (redirect.startsWith(basePath)) {
+            // Convert the full URL to a route path relative to the base URL
+            let route = redirect.slice(basePath.length);
+            // If route starts with a slash, keep it, otherwise add one
+            if (!route.startsWith('/')) route = '/' + route;
+            // Redirect to the route
+            history.replaceState(null, null, basePath + route);
+          }
+        }
+      })();
+    </script>
   </head>
 
   <body>
